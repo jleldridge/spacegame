@@ -6,6 +6,7 @@
   <title>Would you like to play a game...</title>
   <link rel="stylesheet" type="text/css" href="default.css">
   <script type="text/javascript" src="js/pixi.dev.js"></script>
+  <script type="text/javascript" src="js/clientInit.js"></script>
 </head>
 <body>
     <section class='container'>
@@ -19,21 +20,87 @@
     document.body.appendChild(renderer.view);
     requestAnimFrame(animate);
 
+    document.body.addEventListener("keydown", onKeyDown);
+    document.body.addEventListener("keyup", onKeyUp);
+
     var texture = new PIXI.Texture.fromImage("images/shuttle2_0.png");
     var spaceship = new PIXI.Sprite(texture);
 
     spaceship.anchor.x = 0.5;
     spaceship.anchor.y = 0.5;
 
+    spaceship.dx = 0;
+    spaceship.dy = 0;
+
     spaceship.position.x = 250;
     spaceship.position.y = 150;
 
     stage.addChild(spaceship);
 
+    this.keysDown =
+      {
+        "w":false, "a":false, "s":false, "d":false
+      };
+
+    function onKeyDown(e) {
+      switch(e.keyCode) {
+        case KeyEvent.DOM_VK_W:
+          keysDown["w"] = true;
+          spaceship.dy = -2;
+          spaceship.rotation = 0;
+          break;
+        case KeyEvent.DOM_VK_S:
+          keysDown["s"] = true;
+          spaceship.dy = 2;
+          spaceship.rotation = Math.PI;
+          break;
+        case KeyEvent.DOM_VK_A:
+          keysDown["a"] = true;
+          spaceship.dx = -2;
+          spaceship.rotation = 3*Math.PI/2;
+          break;
+        case KeyEvent.DOM_VK_D:
+          keysDown["d"] = true;
+          spaceship.dx = 2;
+          spaceship.rotation = Math.PI/2;
+          break;
+      }
+    }
+
+    function onKeyUp(e) {
+      switch(e.keyCode) {
+        case KeyEvent.DOM_VK_W:
+          keysDown["w"] = false;
+          if (!keysDown["s"]) {
+            spaceship.dy = 0;
+          }
+          break;
+        case KeyEvent.DOM_VK_S:
+          keysDown["s"] = false;
+          if (!keysDown["w"]) {
+            spaceship.dy = 0;
+          }
+          break;
+        case KeyEvent.DOM_VK_A:
+          keysDown["a"] = false;
+          if (!keysDown["d"]) {
+            spaceship.dx = 0;
+          }
+          break;
+        case KeyEvent.DOM_VK_D:
+          keysDown["d"] = false;
+          if (!keysDown["a"]) {
+            spaceship.dx = 0;
+          }
+          break;
+      }
+    }
+
     function animate() {
         requestAnimFrame(animate);
 
-        spaceship.rotation += 0.1;
+        spaceship.position.x += spaceship.dx;
+        spaceship.position.y += spaceship.dy;
 
         renderer.render(stage);
     }
