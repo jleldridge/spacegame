@@ -1,8 +1,8 @@
 #!/bin/env node
 //  OpenShift sample Node application
 var express = require('express');
-var fs      = require('fs');
-
+var fs = require('fs');
+var WebSocketServer = require('ws').Server;
 
 /**
  *  Define the sample application.
@@ -123,6 +123,33 @@ var SampleApp = function() {
         self.app.use(express.static('public'));
     };
 
+    /**
+     * Initialize WebSocketsServer
+     */
+     self.initializeWebSocketServer = function() {
+       self.i = 0;
+       self.wss = new WebSocketServer({ port: 90 });
+
+       self.wss.on('connection', function connection(ws) {
+         console.log('received %s', ws);
+
+         ws.on('message', function incoming(message) {
+          //  self.wss.broadcast(message);
+         });
+
+         var clientMsg = {"messageType": "id", "id": self.i++};
+         ws.send(JSON.stringify(clientMsg));
+
+         var clientConnectedBroadcastMsg = {"messageType": "newPlayer", "id": self.i};
+         self.wss.broadcast(JSON.stringify(clientConnectedBroadcastMsg));
+       });
+
+       self.wss.broadcast = function(data) {
+         self.wss.clients.forEach(function each(client) {
+           client.send(data);
+         });
+       }
+     };
 
     /**
      *  Initializes the sample application.
@@ -134,6 +161,7 @@ var SampleApp = function() {
 
         // Create the express server and routes.
         self.initializeServer();
+        self.initializeWebSocketServer();
     };
 
 
@@ -148,13 +176,8 @@ var SampleApp = function() {
         });
     };
 
-};   /*  Sample Application.  */
+};
 
-
-
-/**
- *  main():  Main code.
- */
 var zapp = new SampleApp();
 zapp.initialize();
 zapp.start();

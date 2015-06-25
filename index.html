@@ -9,9 +9,23 @@
   <script type="text/javascript" src="js/clientInit.js"></script>
 </head>
 <body>
-    <section class='container'>
-    </section>
     <script type="text/javascript">
+    var host = window.document.location.host.replace(/:.*/, '');
+    var ws = new WebSocket('ws://' + host + ':90');
+    var id = -1;
+
+    ws.onmessage = function (event) {
+      var msg = JSON.parse(event.data);
+      switch (msg.messageType) {
+        case "id":
+          id = msg.id;
+          console.log('Connected, assigned id: %s', id);
+          break;
+        case "newPlayer":
+          break;
+      }
+    };
+
     // create a new instance of a pixi stage.
     var stage = new PIXI.Stage(0x000000);
     // create a renderer instance
@@ -103,6 +117,10 @@
         spaceship.position.y += spaceship.dy;
 
         renderer.render(stage);
+
+        if (ws.readyState == 1){
+          ws.send({"x": spaceship.position.x, "y":spaceship.position.y});
+        }
     }
     </script>
 </body>
