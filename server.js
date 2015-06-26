@@ -23,7 +23,7 @@ var SampleApp = function() {
     self.setupVariables = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+        self.port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -128,19 +128,21 @@ var SampleApp = function() {
      */
      self.initializeWebSocketServer = function() {
        self.i = 0;
-       self.wss = new WebSocketServer({ port: 90 });
+       self.wss = new WebSocketServer({port: 81});
 
        self.wss.on('connection', function connection(ws) {
          console.log('received %s', ws);
 
          ws.on('message', function incoming(message) {
-          //  self.wss.broadcast(message);
+           var msg = JSON.parse(message);
+           var response = JSON.stringify({"messageType": "updatePlayer", "id": msg.id, "x": msg.x, "y": msg.y, "rotation": msg.rotation});
+           self.wss.broadcast(response);
          });
 
-         var clientMsg = {"messageType": "id", "id": self.i++};
+         var clientMsg = {"messageType": "id", "id": self.i};
          ws.send(JSON.stringify(clientMsg));
 
-         var clientConnectedBroadcastMsg = {"messageType": "newPlayer", "id": self.i};
+         var clientConnectedBroadcastMsg = {"messageType": "newPlayer", "id": self.i++};
          self.wss.broadcast(JSON.stringify(clientConnectedBroadcastMsg));
        });
 
@@ -161,7 +163,6 @@ var SampleApp = function() {
 
         // Create the express server and routes.
         self.initializeServer();
-        self.initializeWebSocketServer();
     };
 
 
@@ -174,6 +175,7 @@ var SampleApp = function() {
             console.log('%s: Node server started on %s:%d ...',
                         Date(Date.now() ), self.ipaddress, self.port);
         });
+        self.initializeWebSocketServer();
     };
 
 };

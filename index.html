@@ -10,22 +10,6 @@
 </head>
 <body>
     <script type="text/javascript">
-    var host = window.document.location.host.replace(/:.*/, '');
-    var ws = new WebSocket('ws://' + host + ':90');
-    var id = -1;
-
-    ws.onmessage = function (event) {
-      var msg = JSON.parse(event.data);
-      switch (msg.messageType) {
-        case "id":
-          id = msg.id;
-          console.log('Connected, assigned id: %s', id);
-          break;
-        case "newPlayer":
-          break;
-      }
-    };
-
     // create a new instance of a pixi stage.
     var stage = new PIXI.Stage(0x000000);
     // create a renderer instance
@@ -50,6 +34,42 @@
     spaceship.position.y = 150;
 
     stage.addChild(spaceship);
+
+    var host = window.document.location.host.replace(/:.*/, '');
+    var ws = new WebSocket("ws://" + host + ":81");
+    var id = -1;
+    var otherPlayers = {};
+
+    ws.onmessage = function (event) {
+      var msg = JSON.parse(event.data);
+      switch (msg.messageType) {
+        case "id":
+          id = msg.id;
+          console.log('Connected, assigned id: %s', id);
+          break;
+        case "newPlayer":
+          if (id != msg.id && msg.id >= 0) {
+            console.log("new player " + msg.id + " connected")
+            var otherPlayer = new PIXI.Sprite(texture);
+            otherPlayers[msg.id] = otherPlayer;
+            stage.addChild(otherPlayer);
+          }
+          break;
+        case "updatePlayer":
+          if (id != msg.id && msg.id >= 0) {
+            if (!otherPlayers.hasOwnProperty(msg.id)) {
+              otherPlayers[msg.id] = new PIXI.Sprite(texture);
+              stage.addChild(otherPlayers[msg.id]);
+            }
+            otherPlayers[msg.id].anchor.x = 0.5;
+            otherPlayers[msg.id].anchor.y = 0.5;
+            otherPlayers[msg.id].position.x = msg.x;
+            otherPlayers[msg.id].position.y = msg.y;
+            otherPlayers[msg.id].rotation = msg.rotation;
+          }
+          break;
+      }
+    };
 
     this.keysDown =
       {
@@ -110,17 +130,24 @@
       }
     }
 
+    setInterval(sendPositionToServer, 1000);
+
     function animate() {
         requestAnimFrame(animate);
 
         spaceship.position.x += spaceship.dx;
         spaceship.position.y += spaceship.dy;
 
-        renderer.render(stage);
+        sendPositionToServer();
 
-        if (ws.readyState == 1){
-          ws.send({"x": spaceship.position.x, "y":spaceship.position.y});
-        }
+        renderer.render(stage);
+    }
+
+    function sendPositionToServer() {
+      if (ws.readyState == 1){
+        var updateMsg = JSON.stringify({"id": id, "x": spaceship.position.x, "y": spaceship.position.y, "rotation": spaceship.rotation});
+        ws.send(updateMsg);
+      }
     }
     </script>
 </body>
