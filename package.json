@@ -21,5 +21,5 @@
   "bundleDependencies": [],
 
   "private": true,
-  "main": "main.js"
+  "main": "server.js"
 }

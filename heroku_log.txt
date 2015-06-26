@@ -1,14 +1,3 @@
-2015-06-26T19:16:35.874988+00:00 heroku[api]: Release v2 created by jleldridge27@gmail.com
-2015-06-26T19:16:35.874948+00:00 heroku[api]: Enable Logplex by jleldridge27@gmail.com
-2015-06-26T19:17:45.791216+00:00 heroku[slug-compiler]: Slug compilation started
-2015-06-26T19:17:45.791234+00:00 heroku[slug-compiler]: Slug compilation finished
-2015-06-26T19:17:45.695687+00:00 heroku[api]: Scale to web=1 by jleldridge27@gmail.com
-2015-06-26T19:17:45.742639+00:00 heroku[api]: Deploy 76a88a4 by jleldridge27@gmail.com
-2015-06-26T19:17:45.742639+00:00 heroku[api]: Release v3 created by jleldridge27@gmail.com
-2015-06-26T19:17:48.718136+00:00 heroku[web.1]: Starting process with command `node main.js`
-2015-06-26T19:17:49.996602+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
-2015-06-26T19:17:49.996622+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
-2015-06-26T19:17:50.248349+00:00 app[web.1]: Node app is running on port:26074
 2015-06-26T19:17:50.252804+00:00 app[web.1]:       throw er; // Unhandled 'error' event
 2015-06-26T19:17:50.252801+00:00 app[web.1]: events.js:85
 2015-06-26T19:17:50.252808+00:00 app[web.1]: Error: listen EACCES
@@ -50,4 +39,63 @@
 2015-06-26T19:18:19.911935+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=6accbd39-2e8b-445a-8f71-42392feb284e fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
 2015-06-26T19:19:36.751027+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=df6d987e-e602-427a-8e97-d31f49fc7e4f fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
 2015-06-26T19:19:36.945422+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=91555d3c-9085-481d-87bc-a8a1790f7ab7 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-Terminate batch job (Y/N)? 
+2015-06-26T19:27:45.923406+00:00 heroku[api]: Deploy bcdc5bd by jleldridge27@gmail.com
+2015-06-26T19:27:45.923406+00:00 heroku[api]: Release v4 created by jleldridge27@gmail.com
+2015-06-26T19:27:45.986916+00:00 heroku[slug-compiler]: Slug compilation started
+2015-06-26T19:27:45.986924+00:00 heroku[slug-compiler]: Slug compilation finished
+2015-06-26T19:27:46.028612+00:00 heroku[web.1]: State changed from crashed to starting
+2015-06-26T19:27:47.814907+00:00 heroku[web.1]: Starting process with command `node main.js`
+2015-06-26T19:27:49.516074+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
+2015-06-26T19:27:49.516095+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
+2015-06-26T19:27:49.826913+00:00 app[web.1]: Node app is running on port:10951
+2015-06-26T19:27:49.826924+00:00 app[web.1]: events.js:85
+2015-06-26T19:27:49.826926+00:00 app[web.1]:       throw er; // Unhandled 'error' event
+2015-06-26T19:27:49.826927+00:00 app[web.1]:             ^
+2015-06-26T19:27:49.826930+00:00 app[web.1]:     at exports._errnoException (util.js:746:11)
+2015-06-26T19:27:49.826928+00:00 app[web.1]: Error: listen EACCES
+2015-06-26T19:27:49.826931+00:00 app[web.1]:     at Server._listen2 (net.js:1139:19)
+2015-06-26T19:27:49.826935+00:00 app[web.1]:     at dns.js:85:18
+2015-06-26T19:27:49.826933+00:00 app[web.1]:     at listen (net.js:1182:10)
+2015-06-26T19:27:49.826936+00:00 app[web.1]:     at process._tickCallback (node.js:355:11)
+2015-06-26T19:27:49.826934+00:00 app[web.1]:     at net.js:1280:9
+2015-06-26T19:27:49.826938+00:00 app[web.1]:     at Function.Module.runMain (module.js:503:11)
+2015-06-26T19:27:49.826941+00:00 app[web.1]:     at node.js:814:3
+2015-06-26T19:27:49.826939+00:00 app[web.1]:     at startup (node.js:129:16)
+2015-06-26T19:27:50.607918+00:00 heroku[web.1]: State changed from starting to crashed
+2015-06-26T19:27:50.596325+00:00 heroku[web.1]: Process exited with status 1
+2015-06-26T20:00:46.030650+00:00 heroku[api]: Release v5 created by jleldridge27@gmail.com
+2015-06-26T20:00:46.030650+00:00 heroku[api]: Deploy 228ab8c by jleldridge27@gmail.com
+2015-06-26T20:00:46.091088+00:00 heroku[slug-compiler]: Slug compilation started
+2015-06-26T20:00:46.091109+00:00 heroku[slug-compiler]: Slug compilation finished
+2015-06-26T20:00:48.754945+00:00 heroku[web.1]: Starting process with command `node main.js`
+2015-06-26T20:00:50.769783+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
+2015-06-26T20:00:50.769855+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
+2015-06-26T20:00:51.184600+00:00 app[web.1]: module.js:338
+2015-06-26T20:00:51.184604+00:00 app[web.1]:     throw err;
+2015-06-26T20:00:51.184606+00:00 app[web.1]:           ^
+2015-06-26T20:00:51.184610+00:00 app[web.1]:     at Function.Module._resolveFilename (module.js:336:15)
+2015-06-26T20:00:51.184611+00:00 app[web.1]:     at Function.Module._load (module.js:278:25)
+2015-06-26T20:00:51.184608+00:00 app[web.1]: Error: Cannot find module '/app/main.js'
+2015-06-26T20:00:51.184613+00:00 app[web.1]:     at Function.Module.runMain (module.js:501:10)
+2015-06-26T20:00:51.184614+00:00 app[web.1]:     at startup (node.js:129:16)
+2015-06-26T20:00:51.184629+00:00 app[web.1]:     at node.js:814:3
+2015-06-26T20:00:52.078082+00:00 heroku[web.1]: Process exited with status 1
+2015-06-26T20:00:52.089334+00:00 heroku[web.1]: State changed from starting to crashed
+2015-06-26T20:00:52.090619+00:00 heroku[web.1]: State changed from crashed to starting
+2015-06-26T20:00:53.547231+00:00 heroku[web.1]: Starting process with command `node main.js`
+2015-06-26T20:00:46.138200+00:00 heroku[web.1]: State changed from crashed to starting
+2015-06-26T20:00:54.736341+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
+2015-06-26T20:00:54.736356+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
+2015-06-26T20:00:54.840091+00:00 app[web.1]:           ^
+2015-06-26T20:00:54.840084+00:00 app[web.1]: module.js:338
+2015-06-26T20:00:54.840090+00:00 app[web.1]:     throw err;
+2015-06-26T20:00:54.840094+00:00 app[web.1]:     at Function.Module._resolveFilename (module.js:336:15)
+2015-06-26T20:00:54.840093+00:00 app[web.1]: Error: Cannot find module '/app/main.js'
+2015-06-26T20:00:54.840098+00:00 app[web.1]:     at startup (node.js:129:16)
+2015-06-26T20:00:54.840096+00:00 app[web.1]:     at Function.Module._load (module.js:278:25)
+2015-06-26T20:00:54.840097+00:00 app[web.1]:     at Function.Module.runMain (module.js:501:10)
+2015-06-26T20:00:54.840099+00:00 app[web.1]:     at node.js:814:3
+2015-06-26T20:00:55.528361+00:00 heroku[web.1]: State changed from starting to crashed
+2015-06-26T20:00:55.512585+00:00 heroku[web.1]: Process exited with status 1
+2015-06-26T20:01:25.317369+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=1f6c9c1a-d7c8-4b9f-8637-0dfc0391f418 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
+2015-06-26T20:01:25.524544+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=d33a6692-75e6-4977-95f0-3947e14cc60c fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
