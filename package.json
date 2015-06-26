@@ -1,23 +1,12 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "Spacegame",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "Space game.",
   "keywords": [
-    "OpenShift",
+    "heroku",
     "Node.js",
-    "application",
-    "openshift"
+    "application"
   ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
-  },
-  "homepage": "http://www.openshift.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/openshift/origin-server"
-  },
 
   "engines": {
     "node": ">= 0.6.0",
@@ -25,12 +14,12 @@
   },
 
   "dependencies": {
-    "express": "~3.4.4",
-    "ws":">= 0.0.0"
+    "express": "^4.4.5",
+    "ws": "0.4.x"
   },
   "devDependencies": {},
   "bundleDependencies": [],
 
   "private": true,
-  "main": "server.js"
+  "main": "main.js"
 }
