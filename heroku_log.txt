@@ -1,58 +1,3 @@
-2015-06-26T19:17:55.048901+00:00 app[web.1]:       throw er; // Unhandled 'error' event
-2015-06-26T19:17:55.048902+00:00 app[web.1]:             ^
-2015-06-26T19:17:55.048903+00:00 app[web.1]: Error: listen EACCES
-2015-06-26T19:17:55.048905+00:00 app[web.1]:     at exports._errnoException (util.js:746:11)
-2015-06-26T19:17:55.048907+00:00 app[web.1]:     at Server._listen2 (net.js:1139:19)
-2015-06-26T19:17:55.048908+00:00 app[web.1]:     at listen (net.js:1182:10)
-2015-06-26T19:17:55.048909+00:00 app[web.1]:     at net.js:1280:9
-2015-06-26T19:17:55.048910+00:00 app[web.1]:     at dns.js:85:18
-2015-06-26T19:17:55.048912+00:00 app[web.1]:     at process._tickCallback (node.js:355:11)
-2015-06-26T19:17:55.048913+00:00 app[web.1]:     at Function.Module.runMain (module.js:503:11)
-2015-06-26T19:17:55.048914+00:00 app[web.1]:     at startup (node.js:129:16)
-2015-06-26T19:17:55.048916+00:00 app[web.1]:     at node.js:814:3
-2015-06-26T19:17:55.969510+00:00 heroku[web.1]: State changed from starting to crashed
-2015-06-26T19:17:55.948606+00:00 heroku[web.1]: Process exited with status 1
-2015-06-26T19:18:05.460367+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=b765c288-d9bb-4cb0-b416-f19dddd0c835 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-2015-06-26T19:18:05.817980+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=c852ce18-8e0c-4f2e-98b4-5edeeeacc40b fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-2015-06-26T19:18:19.710405+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=0dd4bb16-2081-4f54-afba-4e9f28ad5213 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-2015-06-26T19:18:19.911935+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=6accbd39-2e8b-445a-8f71-42392feb284e fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-2015-06-26T19:19:36.751027+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=df6d987e-e602-427a-8e97-d31f49fc7e4f fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-2015-06-26T19:19:36.945422+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=91555d3c-9085-481d-87bc-a8a1790f7ab7 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
-2015-06-26T19:27:45.923406+00:00 heroku[api]: Deploy bcdc5bd by jleldridge27@gmail.com
-2015-06-26T19:27:45.923406+00:00 heroku[api]: Release v4 created by jleldridge27@gmail.com
-2015-06-26T19:27:45.986916+00:00 heroku[slug-compiler]: Slug compilation started
-2015-06-26T19:27:45.986924+00:00 heroku[slug-compiler]: Slug compilation finished
-2015-06-26T19:27:46.028612+00:00 heroku[web.1]: State changed from crashed to starting
-2015-06-26T19:27:47.814907+00:00 heroku[web.1]: Starting process with command `node main.js`
-2015-06-26T19:27:49.516074+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
-2015-06-26T19:27:49.516095+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
-2015-06-26T19:27:49.826913+00:00 app[web.1]: Node app is running on port:10951
-2015-06-26T19:27:49.826924+00:00 app[web.1]: events.js:85
-2015-06-26T19:27:49.826926+00:00 app[web.1]:       throw er; // Unhandled 'error' event
-2015-06-26T19:27:49.826927+00:00 app[web.1]:             ^
-2015-06-26T19:27:49.826930+00:00 app[web.1]:     at exports._errnoException (util.js:746:11)
-2015-06-26T19:27:49.826928+00:00 app[web.1]: Error: listen EACCES
-2015-06-26T19:27:49.826931+00:00 app[web.1]:     at Server._listen2 (net.js:1139:19)
-2015-06-26T19:27:49.826935+00:00 app[web.1]:     at dns.js:85:18
-2015-06-26T19:27:49.826933+00:00 app[web.1]:     at listen (net.js:1182:10)
-2015-06-26T19:27:49.826936+00:00 app[web.1]:     at process._tickCallback (node.js:355:11)
-2015-06-26T19:27:49.826934+00:00 app[web.1]:     at net.js:1280:9
-2015-06-26T19:27:49.826938+00:00 app[web.1]:     at Function.Module.runMain (module.js:503:11)
-2015-06-26T19:27:49.826941+00:00 app[web.1]:     at node.js:814:3
-2015-06-26T19:27:49.826939+00:00 app[web.1]:     at startup (node.js:129:16)
-2015-06-26T19:27:50.607918+00:00 heroku[web.1]: State changed from starting to crashed
-2015-06-26T19:27:50.596325+00:00 heroku[web.1]: Process exited with status 1
-2015-06-26T20:00:46.030650+00:00 heroku[api]: Release v5 created by jleldridge27@gmail.com
-2015-06-26T20:00:46.030650+00:00 heroku[api]: Deploy 228ab8c by jleldridge27@gmail.com
-2015-06-26T20:00:46.091088+00:00 heroku[slug-compiler]: Slug compilation started
-2015-06-26T20:00:46.091109+00:00 heroku[slug-compiler]: Slug compilation finished
-2015-06-26T20:00:48.754945+00:00 heroku[web.1]: Starting process with command `node main.js`
-2015-06-26T20:00:50.769783+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
-2015-06-26T20:00:50.769855+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
-2015-06-26T20:00:51.184600+00:00 app[web.1]: module.js:338
-2015-06-26T20:00:51.184604+00:00 app[web.1]:     throw err;
-2015-06-26T20:00:51.184606+00:00 app[web.1]:           ^
-2015-06-26T20:00:51.184610+00:00 app[web.1]:     at Function.Module._resolveFilename (module.js:336:15)
 2015-06-26T20:00:51.184611+00:00 app[web.1]:     at Function.Module._load (module.js:278:25)
 2015-06-26T20:00:51.184608+00:00 app[web.1]: Error: Cannot find module '/app/main.js'
 2015-06-26T20:00:51.184613+00:00 app[web.1]:     at Function.Module.runMain (module.js:501:10)
@@ -99,3 +44,58 @@
 2015-06-26T20:07:02.500540+00:00 heroku[web.1]: Process exited with status 1
 2015-06-26T20:07:06.958926+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=a7eeba7f-eabb-452d-8af3-8fafc1c81b61 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
 2015-06-26T20:07:07.153009+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=ebd45e55-f96e-40b8-acec-22e1571e4b06 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
+2015-06-26T20:09:00.632195+00:00 heroku[api]: Deploy 9eb7a61 by jleldridge27@gmail.com
+2015-06-26T20:09:00.632195+00:00 heroku[api]: Release v7 created by jleldridge27@gmail.com
+2015-06-26T20:09:00.693911+00:00 heroku[slug-compiler]: Slug compilation started
+2015-06-26T20:09:00.693935+00:00 heroku[slug-compiler]: Slug compilation finished
+2015-06-26T20:09:00.805495+00:00 heroku[web.1]: State changed from crashed to starting
+2015-06-26T20:09:03.236101+00:00 heroku[web.1]: Starting process with command `node server.js`
+2015-06-26T20:09:05.634577+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
+2015-06-26T20:09:05.634733+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
+2015-06-26T20:09:07.408714+00:00 heroku[web.1]: State changed from starting to up
+2015-06-26T20:09:11.134626+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=e36e718b-b408-47dd-bdff-a2318bbcc5c4 fwd="70.60.245.50" dyno=web.1 connect=1ms service=62ms status=200 bytes=4679
+2015-06-26T20:09:11.263813+00:00 heroku[router]: at=info method=GET path="/default.css" host=agile-thicket-4508.herokuapp.com request_id=e881d6bf-1db2-4063-85d2-415caaf8cb15 fwd="70.60.245.50" dyno=web.1 connect=1ms service=35ms status=200 bytes=35995
+2015-06-26T20:09:11.260261+00:00 heroku[router]: at=info method=GET path="/js/clientInit.js" host=agile-thicket-4508.herokuapp.com request_id=9b038f2d-c1b8-4336-b398-643ba9e4d3f3 fwd="70.60.245.50" dyno=web.1 connect=0ms service=26ms status=200 bytes=3044
+2015-06-26T20:09:11.279468+00:00 heroku[router]: at=info method=GET path="/js/pixi.dev.js" host=agile-thicket-4508.herokuapp.com request_id=3cbbdfc3-dc1b-4648-93cd-580f7ff3feda fwd="70.60.245.50" dyno=web.1 connect=0ms service=55ms status=200 bytes=574832
+2015-06-26T20:09:11.698590+00:00 heroku[router]: at=info method=GET path="/images/shuttle2_0.png" host=agile-thicket-4508.herokuapp.com request_id=b757aa9f-e58d-40b3-91de-597a55c4cff2 fwd="70.60.245.50" dyno=web.1 connect=0ms service=12ms status=200 bytes=1320
+2015-06-26T20:09:11.691819+00:00 app[web.1]: received [object Object]
+2015-06-26T20:09:11.829701+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=e4efc4dd-dab8-494b-9f31-cb52289b5d17 fwd="70.60.245.50" dyno=web.1 connect=1ms service=89ms status=404 bytes=222
+2015-06-26T20:09:22.428318+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=6d8b7b0d-bd59-4d75-99fd-d2b3f3e59b93 fwd="70.60.245.50" dyno=web.1 connect=1ms service=15ms status=304 bytes=238
+2015-06-26T20:09:22.552443+00:00 heroku[router]: at=info method=GET path="/js/clientInit.js" host=agile-thicket-4508.herokuapp.com request_id=7c2ad0bd-57c9-455f-9840-1ebc9d092656 fwd="70.60.245.50" dyno=web.1 connect=0ms service=2ms status=304 bytes=237
+2015-06-26T20:09:22.700073+00:00 heroku[router]: at=info method=GET path="/images/shuttle2_0.png" host=agile-thicket-4508.herokuapp.com request_id=90a93c0f-cde7-4a34-9f09-46db43130a30 fwd="70.60.245.50" dyno=web.1 connect=2ms service=6ms status=304 bytes=237
+2015-06-26T20:09:22.550145+00:00 heroku[router]: at=info method=GET path="/default.css" host=agile-thicket-4508.herokuapp.com request_id=7404d868-e261-4094-baf9-707bafdb1279 fwd="70.60.245.50" dyno=web.1 connect=1ms service=4ms status=304 bytes=238
+2015-06-26T20:09:22.543528+00:00 heroku[router]: at=info method=GET path="/js/pixi.dev.js" host=agile-thicket-4508.herokuapp.com request_id=ee2f042e-ead5-496c-bea8-9f76dfc18f26 fwd="70.60.245.50" dyno=web.1 connect=1ms service=2ms status=304 bytes=239
+2015-06-26T20:09:22.749636+00:00 app[web.1]: received [object Object]
+2015-06-26T20:09:59.375682+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=903cd944-6511-448f-b24c-30ec47047a6e fwd="70.60.245.50" dyno=web.1 connect=1ms service=15ms status=200 bytes=4679
+2015-06-26T20:09:59.596175+00:00 heroku[router]: at=info method=GET path="/js/clientInit.js" host=agile-thicket-4508.herokuapp.com request_id=b2730ec3-4090-49ba-ab2f-b178876d395d fwd="70.60.245.50" dyno=web.1 connect=2ms service=5ms status=200 bytes=3044
+2015-06-26T20:09:59.558992+00:00 heroku[router]: at=info method=GET path="/default.css" host=agile-thicket-4508.herokuapp.com request_id=5938bb71-5fa7-4d9a-bb1d-49f56ea76c12 fwd="70.60.245.50" dyno=web.1 connect=6ms service=37ms status=200 bytes=35995
+2015-06-26T20:09:59.602413+00:00 heroku[router]: at=info method=GET path="/js/pixi.dev.js" host=agile-thicket-4508.herokuapp.com request_id=074408c9-574e-486c-aa11-8ceb4a03baa3 fwd="70.60.245.50" dyno=web.1 connect=1ms service=77ms status=200 bytes=574832
+2015-06-26T20:10:00.110745+00:00 heroku[router]: at=info method=GET path="/images/shuttle2_0.png" host=agile-thicket-4508.herokuapp.com request_id=6f472bbb-bf1c-4c52-9594-af93792bc98c fwd="70.60.245.50" dyno=web.1 connect=1ms service=15ms status=200 bytes=1320
+2015-06-26T20:10:00.068225+00:00 app[web.1]: received [object Object]
+2015-06-26T20:10:00.175191+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=agile-thicket-4508.herokuapp.com request_id=5df2623f-ffbb-46aa-87db-9122a0150b8e fwd="70.60.245.50" dyno=web.1 connect=1ms service=6ms status=404 bytes=222
+2015-06-26T20:10:30.910816+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=60e51427-f99b-480e-8bac-1625096afd2d fwd="70.60.245.50" dyno=web.1 connect=3ms service=18ms status=304 bytes=238
+2015-06-26T20:10:31.062147+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=a4bbfe74-c7ff-4b54-8c9f-2e804615de49 fwd="70.60.245.50" dyno=web.1 connect=5ms service=79381ms status=101 bytes=129
+2015-06-26T20:10:31.065311+00:00 heroku[router]: at=error code=H13 desc="Connection closed without response" method=GET path="/js/clientInit.js" host=agile-thicket-4508.herokuapp.com request_id=479f1fa7-c464-415c-9d9a-7c3d55633e9e fwd="70.60.245.50" dyno=web.1 connect=1ms service=68ms status=503 bytes=0
+2015-06-26T20:10:30.992988+00:00 app[web.1]: /app/node_modules/ws/lib/WebSocket.js:181
+2015-06-26T20:10:30.992992+00:00 app[web.1]:     else throw new Error('not opened');
+2015-06-26T20:10:30.992994+00:00 app[web.1]:                ^
+2015-06-26T20:10:30.992995+00:00 app[web.1]: Error: not opened
+2015-06-26T20:10:30.992998+00:00 app[web.1]:     at each (/app/server.js:44:12)
+2015-06-26T20:10:30.992997+00:00 app[web.1]:     at WebSocket.send (/app/node_modules/ws/lib/WebSocket.js:181:16)
+2015-06-26T20:10:30.993000+00:00 app[web.1]:     at broadcast (/app/server.js:43:15)
+2015-06-26T20:10:30.992999+00:00 app[web.1]:     at Array.forEach (native)
+2015-06-26T20:10:30.993001+00:00 app[web.1]:     at WebSocket.incoming (/app/server.js:32:5)
+2015-06-26T20:10:30.993002+00:00 app[web.1]:     at WebSocket.emit (events.js:110:17)
+2015-06-26T20:10:30.993004+00:00 app[web.1]:     at Receiver.self._receiver.ontext (/app/node_modules/ws/lib/WebSocket.js:682:10)
+2015-06-26T20:10:30.993005+00:00 app[web.1]:     at Receiver.opcodes.1.finish (/app/node_modules/ws/lib/Receiver.js:391:14)
+2015-06-26T20:10:30.993006+00:00 app[web.1]:     at Receiver.expectHandler (/app/node_modules/ws/lib/Receiver.js:372:33)
+2015-06-26T20:10:30.993007+00:00 app[web.1]:     at Receiver.add (/app/node_modules/ws/lib/Receiver.js:87:24)
+2015-06-26T20:10:31.068344+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=9d984d11-0a80-4f59-88c4-e8a8ad811b61 fwd="70.60.245.50" dyno=web.1 connect=0ms service=68327ms status=101 bytes=129
+2015-06-26T20:10:31.059391+00:00 heroku[router]: at=error code=H13 desc="Connection closed without response" method=GET path="/js/pixi.dev.js" host=agile-thicket-4508.herokuapp.com request_id=234a9eac-06a8-4540-8227-68c4f2965a5d fwd="70.60.245.50" dyno=web.1 connect=1ms service=74ms status=503 bytes=0
+2015-06-26T20:10:30.973505+00:00 heroku[router]: at=info method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=7aae556c-bbc8-4591-b476-ffe87740055c fwd="70.60.245.50" dyno=web.1 connect=1ms service=30935ms status=101 bytes=129
+2015-06-26T20:10:31.060981+00:00 heroku[router]: at=error code=H13 desc="Connection closed without response" method=GET path="/default.css" host=agile-thicket-4508.herokuapp.com request_id=3a8ad57c-6420-49eb-b3c9-8fc5df9d13ef fwd="70.60.245.50" dyno=web.1 connect=2ms service=67ms status=503 bytes=0
+2015-06-26T20:10:31.964512+00:00 heroku[web.1]: Process exited with status 1
+2015-06-26T20:10:31.975949+00:00 heroku[web.1]: State changed from up to crashed
+2015-06-26T20:10:37.245080+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=5463e1d6-c8e6-478d-a1d1-ae6e4c530a80 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
+2015-06-26T20:10:41.225555+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=1eed22dc-f2e1-4232-8b0d-5ce4b9508077 fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
+2015-06-26T20:10:52.254873+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=agile-thicket-4508.herokuapp.com request_id=f1e97b0d-3229-4ed4-95d0-2b5022c9a56f fwd="70.60.245.50" dyno= connect= service= status=503 bytes=
