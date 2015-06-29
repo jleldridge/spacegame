@@ -4,44 +4,50 @@ var WebSocketServer = require('ws').Server;
 var http = require('http');
 var app = express();
 
-// app.set('port', (process.env.PORT || 5000));
-var port = process.env.PORT || 5000
+var port = process.env.PORT || 5000;
 app.use(express.static(__dirname + '/public'));
 
-// app.get('/', function(request, response) {
-//   var index = fs.readFileSync('./index.html');
-//   response.setHeader('Content-Type', 'text/html');
-//   response.send(index);
-// });
+var server = http.createServer(app);
+server.listen(port);
 
-// app.listen(app.get('port'), function() {
-//   console.log("Node app is running on port:" + app.get('port'))
-// })
-var server = http.createServer(app)
-server.listen(port)
+var i = 0;
+var bullet_i = 0;
+var wss = new WebSocketServer({server: server});
 
-i = 0;
-wss = new WebSocketServer({server: server});
+var shipsById = {};
+var bulletsById = {};
+var ships = [];
+var bullets = [];
 
 wss.on('connection', function connection(ws) {
   console.log('Client connected.');
+  var newShip = {"id":i, "x":50, "y":50, "dx":0, "dy":0};
+  shipsById[newShip.id] = newShip;
+  ships.push(newShip);
 
   ws.on('message', function incoming(message) {
     var msg = JSON.parse(message);
     switch (msg.messageType) {
       case "addBullet":
-        var response = JSON.stringify({"messageType": "addBullet", "x": msg.x, "y": msg.y, "dx": msg.dx, "dy":msg.dy});
-        broadcast(response);
+        // var response = JSON.stringify({"messageType": "addBullet", "x": msg.x, "y": msg.y, "dx": msg.dx, "dy":msg.dy});
+        var newBullet = {"id":bullet_i++, "x": msg.x, "y": msg.y, "dx": msg.dx, "dy": msg.dy};
+        bullets.push(newBullet);
+        bulletsById[newBullet.id] = newBullet;
+        // broadcast(response);
         break;
       case "updatePlayer":
-        var response = JSON.stringify({"messageType": "updatePlayer", "id": msg.id, "x": msg.x, "y": msg.y, "rotation": msg.rotation});
-        broadcast(response);
+        shipsById[msg.id].dx = msg.dx;
+        shipsById[msg.id].dy = msg.dy;
+        shipsById[msg.id].rotation = msg.rotation;
+        // var response = JSON.stringify({"messageType": "updatePlayer", "id": msg.id, "x": msg.x, "y": msg.y, "rotation": msg.rotation});
+        // broadcast(response);
         break;
     }
   });
 
   ws.on('close', function close(code, message) {
-    console.log('client closed with code %s\nmessage: %s', code, message);
+    console.log('Client closed with code %s\n%s', code, message);
+    shipsById[ws.id] = null;
     var response = JSON.stringify({"messageType": "playerLeft", "id": ws.id});
     broadcast(response);
   });
@@ -56,8 +62,26 @@ wss.on('connection', function connection(ws) {
   i++;
 });
 
-broadcast = function(data) {
+var broadcast = function(data) {
   wss.clients.forEach(function each(client) {
     client.send(data);
   });
 }
+
+var update = function() {
+  for (var i = 0; i < ships.length; i++) {
+    ships[i].x += ships[i].dx;
+    ships[i].y += ships[i].dy;
+    var shipMsg = JSON.stringify({"messageType": "updatePlayer", "id": ships[i].id, "x": ships[i].x, "y": ships[i].y, "rotation": ships[i].rotation});
+    broadcast(shipMsg);
+  }
+
+  for (var i = 0; i < bullets.length; i++) {
+    bullets[i].x += bullets[i].dx;
+    bullets[i].y += bullets[i].dy;
+    var bulletMsg = JSON.stringify({"messageType": "updateBullet", "id": bullets[i].id, "x": bullets[i].x, "y": bullets[i].y});
+    broadcast(bulletMsg);
+  }
+}
+
+setInterval(update, 25);
