@@ -25,11 +25,19 @@ wss = new WebSocketServer({server: server});
 
 wss.on('connection', function connection(ws) {
   console.log('Client connected.');
-  
+
   ws.on('message', function incoming(message) {
     var msg = JSON.parse(message);
-    var response = JSON.stringify({"messageType": "updatePlayer", "id": msg.id, "x": msg.x, "y": msg.y, "rotation": msg.rotation});
-    broadcast(response);
+    switch (msg.messageType) {
+      case "addBullet":
+        var response = JSON.stringify({"messageType": "addBullet", "x": msg.x, "y": msg.y, "dx": msg.dx, "dy":msg.dy});
+        broadcast(response);
+        break;
+      case "updatePlayer":
+        var response = JSON.stringify({"messageType": "updatePlayer", "id": msg.id, "x": msg.x, "y": msg.y, "rotation": msg.rotation});
+        broadcast(response);
+        break;
+    }
   });
 
   ws.on('close', function close(code, message) {
