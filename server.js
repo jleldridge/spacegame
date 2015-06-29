@@ -47,7 +47,12 @@ wss.on('connection', function connection(ws) {
 
   ws.on('close', function close(code, message) {
     console.log('Client closed with code %s\n%s', code, message);
-    shipsById[ws.id] = null;
+
+    var ship = shipsById[ws.id];
+    var shipIndex = ships.indexOf(ship);
+    ships.splice(shipIndex, 1);
+    shipsById[ship.id] = null;
+
     var response = JSON.stringify({"messageType": "playerLeft", "id": ws.id});
     broadcast(response);
   });
