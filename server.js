@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var WebSocketServer = require('ws').Server;
 var http = require('http');
+var engine = require('./engine/SpaceGameEngine.js');
 var app = express();
 
 var port = process.env.PORT || 5000;
@@ -12,7 +13,9 @@ server.listen(port);
 
 var i = 0;
 var bullet_i = 0;
-var wss = new WebSocketServer({server: server});
+var wss = new WebSocketServer({
+  server: server
+});
 
 var shipsById = {};
 var bulletsById = {};
@@ -21,7 +24,13 @@ var bullets = [];
 
 wss.on('connection', function connection(ws) {
   console.log('Client connected.');
-  var newShip = {"id":i, "x":50, "y":50, "dx":0, "dy":0};
+  var newShip = {
+    "id": i,
+    "x": 50,
+    "y": 50,
+    "dx": 0,
+    "dy": 0
+  };
   shipsById[newShip.id] = newShip;
   ships.push(newShip);
 
@@ -30,7 +39,13 @@ wss.on('connection', function connection(ws) {
     switch (msg.messageType) {
       case "addBullet":
         // var response = JSON.stringify({"messageType": "addBullet", "x": msg.x, "y": msg.y, "dx": msg.dx, "dy":msg.dy});
-        var newBullet = {"id":bullet_i++, "x": msg.x, "y": msg.y, "dx": msg.dx, "dy": msg.dy};
+        var newBullet = {
+          "id": bullet_i++,
+          "x": msg.x,
+          "y": msg.y,
+          "dx": msg.dx,
+          "dy": msg.dy
+        };
         bullets.push(newBullet);
         bulletsById[newBullet.id] = newBullet;
         // broadcast(response);
@@ -53,15 +68,24 @@ wss.on('connection', function connection(ws) {
     ships.splice(shipIndex, 1);
     shipsById[ship.id] = null;
 
-    var response = JSON.stringify({"messageType": "playerLeft", "id": ws.id});
+    var response = JSON.stringify({
+      "messageType": "playerLeft",
+      "id": ws.id
+    });
     broadcast(response);
   });
 
-  var clientMsg = {"messageType": "id", "id": i};
+  var clientMsg = {
+    "messageType": "id",
+    "id": i
+  };
   ws.send(JSON.stringify(clientMsg));
 
   ws.id = i;
-  var clientConnectedBroadcastMsg = {"messageType": "newPlayer", "id": i};
+  var clientConnectedBroadcastMsg = {
+    "messageType": "newPlayer",
+    "id": i
+  };
   broadcast(JSON.stringify(clientConnectedBroadcastMsg));
 
   i++;
@@ -77,14 +101,26 @@ var update = function() {
   for (var i = 0; i < ships.length; i++) {
     ships[i].x += ships[i].dx;
     ships[i].y += ships[i].dy;
-    var shipMsg = JSON.stringify({"messageType": "updatePlayer", "id": ships[i].id, "x": ships[i].x, "y": ships[i].y, "rotation": ships[i].rotation});
+    var shipMsg = JSON.stringify({
+      "messageType": "updatePlayer",
+      "id": ships[i].id,
+      "x": ships[i].x,
+      "y": ships[i].y,
+      "rotation": ships[i].rotation
+    });
     broadcast(shipMsg);
   }
 
   for (var i = 0; i < bullets.length; i++) {
+    console.log("bullet%s x:%s y:%s", i, bullets[i].x, bullets[i].y);
     bullets[i].x += bullets[i].dx;
     bullets[i].y += bullets[i].dy;
-    var bulletMsg = JSON.stringify({"messageType": "updateBullet", "id": bullets[i].id, "x": bullets[i].x, "y": bullets[i].y});
+    var bulletMsg = JSON.stringify({
+      "messageType": "updateBullet",
+      "id": bullets[i].id,
+      "x": bullets[i].x,
+      "y": bullets[i].y
+    });
     broadcast(bulletMsg);
   }
 }

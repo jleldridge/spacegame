@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -8,8 +9,9 @@
   <script type="text/javascript" src="js/pixi.dev.js"></script>
   <script type="text/javascript" src="js/clientInit.js"></script>
 </head>
+
 <body>
-    <script type="text/javascript">
+  <script type="text/javascript">
     // create a new instance of a pixi stage.
     var stage = new PIXI.Stage(0x000000);
     // create a renderer instance
@@ -42,7 +44,7 @@
     var otherPlayers = {};
     var bullets = {};
 
-    ws.onmessage = function (event) {
+    ws.onmessage = function(event) {
       var msg = JSON.parse(event.data);
       switch (msg.messageType) {
         case "id":
@@ -73,8 +75,7 @@
             otherPlayers[msg.id].position.x = msg.x;
             otherPlayers[msg.id].position.y = msg.y;
             otherPlayers[msg.id].rotation = msg.rotation;
-          }
-          else if (id == msg.id) {
+          } else if (id == msg.id) {
             spaceship.position.x = msg.x;
             spaceship.position.y = msg.y;
             spaceship.rotation = msg.rotation;
@@ -87,8 +88,7 @@
             graphics.drawCircle(msg.x, msg.y, 5);
             bullets[msg.id] = graphics;
             stage.addChild(graphics);
-          }
-          else {
+          } else {
             bullets[msg.id].position.x = msg.x;
             bullets[msg.id].position.y = msg.y;
           }
@@ -96,13 +96,15 @@
       }
     };
 
-    this.keysDown =
-      {
-        "w":false, "a":false, "s":false, "d":false
-      };
+    this.keysDown = {
+      "w": false,
+      "a": false,
+      "s": false,
+      "d": false
+    };
 
     function onKeyDown(e) {
-      switch(e.keyCode) {
+      switch (e.keyCode) {
         case KeyEvent.DOM_VK_W:
           keysDown["w"] = true;
           spaceship.dy = -2;
@@ -116,17 +118,23 @@
         case KeyEvent.DOM_VK_A:
           keysDown["a"] = true;
           spaceship.dx = -2;
-          spaceship.rotation = 3*Math.PI/2;
+          spaceship.rotation = 3 * Math.PI / 2;
           break;
         case KeyEvent.DOM_VK_D:
           keysDown["d"] = true;
           spaceship.dx = 2;
-          spaceship.rotation = Math.PI/2;
+          spaceship.rotation = Math.PI / 2;
           break;
         case KeyEvent.DOM_VK_SPACE:
-          var x = spaceship.position.x + (spaceship.width / 2) * Math.cos(spaceship.rotation - Math.PI/2);
-          var y = spaceship.position.y + (spaceship.height / 2) * Math.sin(spaceship.rotation - Math.PI/2);
-          var shootMsg = JSON.stringify({"messageType": "addBullet", "x": x, "y": y, "dx": 5 * Math.cos(spaceship.rotation - Math.PI/2), "dy":5 * Math.sin(spaceship.rotation - Math.PI/2)});
+          var x = spaceship.position.x + (spaceship.width) * Math.cos(spaceship.rotation - Math.PI / 2);
+          var y = spaceship.position.y + (spaceship.height) * Math.sin(spaceship.rotation - Math.PI / 2);
+          var shootMsg = JSON.stringify({
+            "messageType": "addBullet",
+            "x": x,
+            "y": y,
+            "dx": 5 * Math.cos(spaceship.rotation - Math.PI / 2),
+            "dy": 5 * Math.sin(spaceship.rotation - Math.PI / 2)
+          });
           ws.send(shootMsg);
           break;
         case KeyEvent.DOM_VK_E:
@@ -136,7 +144,7 @@
     }
 
     function onKeyUp(e) {
-      switch(e.keyCode) {
+      switch (e.keyCode) {
         case KeyEvent.DOM_VK_W:
           keysDown["w"] = false;
           if (!keysDown["s"]) {
@@ -166,16 +174,23 @@
     }
 
     function animate() {
-        requestAnimFrame(animate);
-        renderer.render(stage);
+      requestAnimFrame(animate);
+      renderer.render(stage);
     }
 
     function sendStateToServer() {
-      if (ws.readyState == 1){
-        var updateMsg = JSON.stringify({"messageType":"updatePlayer", "id": id, "dx": spaceship.dx, "dy": spaceship.dy, "rotation": spaceship.rotation});
+      if (ws.readyState == 1) {
+        var updateMsg = JSON.stringify({
+          "messageType": "updatePlayer",
+          "id": id,
+          "dx": spaceship.dx,
+          "dy": spaceship.dy,
+          "rotation": spaceship.rotation
+        });
         ws.send(updateMsg);
       }
     }
-    </script>
+  </script>
 </body>
+
 </html>
